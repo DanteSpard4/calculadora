@@ -23,6 +23,11 @@ public class Usuario implements UserDetails {
     private String login;
     private String clave;
 
+    public Usuario(String login, String passwordEncrypt) {
+        this.login = login;
+        this.clave = passwordEncrypt;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
