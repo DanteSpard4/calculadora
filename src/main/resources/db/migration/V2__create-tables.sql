@@ -18,12 +18,16 @@ CREATE TABLE Gastos (
     Descripcion VARCHAR(255),
     CONSTRAINT FK_Gastos_Usuario FOREIGN KEY (UsuarioID) REFERENCES usuarios(id)
 );
-
+CREATE TABLE suscripciones{
+    ID INT PRIMARY KEY,
+    
+}
 CREATE TABLE Ingreso(
     IngresoID INT PRIMARY KEY,
     UsuarioID INT,
     Monto DECIMAL(15,2)
     Fecha DATE,
+    Banco VARCHAR(50),
     Descripcion VARCHAR(255),
     CONSTRAINT FK_Ingreso_Usuario FOREIGN (UsuarioID) REFERENCES usuarios(id)
 );
