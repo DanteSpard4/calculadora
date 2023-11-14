@@ -22,7 +22,7 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         //return httpSecurity.csrf() seguridad web
-        return httpSecurity.csrf(csrf -> csrf.disable())
+        return httpSecurity
                 .sessionManagement(sess -> sess.sessionCreationPolicy
                         (SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST,"/login").permitAll())
