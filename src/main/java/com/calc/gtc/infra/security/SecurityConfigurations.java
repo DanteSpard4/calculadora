@@ -1,5 +1,6 @@
 package com.calc.gtc.infra.security;
 
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,16 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         //return httpSecurity.csrf() seguridad web
-        return httpSecurity.csrf(csrf -> csrf.disable())
+        httpSecurity.csrf(csrf -> csrf.disable())
                 .sessionManagement(sess -> sess.sessionCreationPolicy
                         (SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST,"/login").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST,"/singup").permitAll())
                 .authorizeHttpRequests(ath->ath.requestMatchers( "/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll()
                         .anyRequest().authenticated())
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class).build();
-
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.cors(Customizer.withDefaults());
+        return httpSecurity.build();
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
