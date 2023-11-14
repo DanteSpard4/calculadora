@@ -15,7 +15,7 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Permitir solicitudes desde este origen (reemplazar con tu URL)
-        config.addAllowedOrigin("http://127.0.0.1:5500");
+        config.addAllowedOrigin("https://pruebas-production-7ef0.up.railway.app");
 
         // Configuración adicional si es necesario (métodos, encabezados, etc.)
         config.addAllowedMethod("*");
