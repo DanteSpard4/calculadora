@@ -1,28 +1,25 @@
 package com.calc.gtc.infra.congig;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class CorsConfig {
+@EnableWebMvc
+public class CorsConfig implements WebMvcConfigurer {
 
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("https://pruebas-production-7ef0.up.railway.app")
+                .allowedMethods("*");
+        registry.addMapping("/**")
+                .allowedOrigins("https://pruebas-production-7ef0.up.railway.app")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization")
+                .allowCredentials(true);
 
-        // Permitir solicitudes desde este origen (reemplazar con tu URL)
-        config.addAllowedOrigin("https://pruebas-production-7ef0.up.railway.app");
-
-        // Configuración adicional si es necesario (métodos, encabezados, etc.)
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
-
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
     }
 }
 
