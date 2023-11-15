@@ -48,7 +48,10 @@ public class SecurityConfigurations implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://127.0.0.1:5501") // Reemplaza con el origen de tu aplicación
+                .allowedOrigins(
+                        "http://127.0.0.1:5501"
+                        ,"https://pruebas2-production.up.railway.app"
+                        ,"http://127.0.0.1:5173") // Reemplaza con el origen de tu aplicación
                 .allowedMethods("GET", "POST", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
