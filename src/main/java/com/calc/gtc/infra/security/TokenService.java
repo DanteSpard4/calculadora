@@ -12,15 +12,11 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
-
 
 @Service
 public class TokenService {
-
     @Value("${api.security.secret}")
     private String apiSecret;
-
     public String generarToken(Usuario usuario){
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
@@ -30,17 +26,16 @@ public class TokenService {
                     .withClaim("id",usuario.getId())
                     .withExpiresAt(generarFechaExpiracion())
                     .sign(algorithm);
-
-        }catch (JWTCreationException exception){
+        } catch (JWTCreationException exception){
             throw new RuntimeException();
         }
     }
 
-    private Instant generarFechaExpiracion() {
+    private Instant generarFechaExpiracion(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-05:00"));
     }
 
-    public String getSubject(String token){
+    public String getSubject(String token) {
         if(token==null){
             throw new RuntimeException();
         }
@@ -48,15 +43,17 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
             verifier = JWT.require(algorithm)
+                    // specify an specific claim validations
                     .withIssuer("calGtc")
+                    // reusable verifier instance
                     .build()
                     .verify(token);
             verifier.getSubject();
-        }catch (JWTVerificationException exception){
+        } catch (JWTVerificationException exception) {
             System.out.println(exception.toString());
         }
-        if (verifier==null){
-            throw new RuntimeException();
+        if (verifier == null) {
+            throw new RuntimeException("Verifier invalido");
         }
         return verifier.getSubject();
     }
