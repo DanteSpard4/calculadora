@@ -38,4 +38,12 @@ public class Gastos {
     @Column(name = "Descripcion")
     private String descripcion;
 
+    public Gastos(DatosGastos datosGastos) {
+        this.usuarioid=datosGastos.usuarioID();
+        this.categoria=datosGastos.categoria();
+        this.monto=datosGastos.monto();
+        this.banco=datosGastos.banco();
+        this.fecha=datosGastos.fecha();
+        this.descripcion=datosGastos.descripcion();
+    }
 }

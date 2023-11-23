@@ -1,4 +1,10 @@
 package com.calc.gtc.domain.usuarios;
 
-public record DatosAunteticacionUsuario(String login,String clave) {
+import jakarta.validation.constraints.NotEmpty;
+
+public record DatosAunteticacionUsuario(
+        @NotEmpty
+        String login,
+        @NotEmpty
+        String clave) {
 }
