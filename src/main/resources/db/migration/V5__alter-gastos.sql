@@ -1,0 +1,2 @@
+ALTER TABLE gastos add COLUMN razon VARCHAR(200);
+ALTER TABLE gastos add COLUMN tipo  BOOLEAN;
