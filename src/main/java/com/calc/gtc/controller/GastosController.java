@@ -20,9 +20,9 @@ public class GastosController {
         repository.save(new Gastos(datosGastos));
         return ResponseEntity.ok().build();
     }
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<Page<DatosListaGastos>> obtenerGastos(@RequestBody @Valid Long id){
-        return ResponseEntity.ok(repository.)
-    }
+        return ResponseEntity.ok(repository.);
+    }*/
 
 }
