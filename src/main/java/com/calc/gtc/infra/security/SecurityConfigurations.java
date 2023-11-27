@@ -54,7 +54,7 @@ public class SecurityConfigurations implements WebMvcConfigurer {
                         "https://pruebas2-production.up.railway.app"
                         ,"http://127.0.0.1:5173",
                         "http://localhost:5173",
-                        "https://earnest-crostata-5fa50f.netlify.app/authentication/login") // Reemplaza con el origen de tu aplicación
+                        "https://earnest-crostata-5fa50f.netlify.app") // Reemplaza con el origen de tu aplicación
                 .allowedMethods("GET", "POST", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
