@@ -33,7 +33,7 @@ public class GastosController {
         return ResponseEntity.ok(repository.findByusuarioid(id,paginacion).map(DatosListaGastos::new));
     }
     @GetMapping("/{banco}")
-    public ResponseEntity obtenerGastoPorBanco(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@PathVariable String banco){
+    public ResponseEntity bvfobtenerGastoPorBanco(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@PathVariable String banco){
         return ResponseEntity.ok().build();
     }
 }
