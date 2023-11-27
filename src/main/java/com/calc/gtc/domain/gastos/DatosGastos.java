@@ -1,24 +1,21 @@
 package com.calc.gtc.domain.gastos;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record DatosGastos(
         @NotEmpty
+        Long usuarioID,
+        @NotEmpty
         String categoria,
-        @NotNull
+        @NotEmpty
         BigDecimal monto,
         @NotEmpty
         String banco,
-        @NotNull
+        @NotEmpty
         LocalDate fecha,
         @NotEmpty
-        String descripcion,
-        @NotNull
-        Boolean tipo,
-        @NotEmpty
-        String razon) {
+        String descripcion) {
 }
