@@ -50,8 +50,8 @@ public class SecurityConfigurations implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                        "http://127.0.0.1:5501"
-                        ,"https://pruebas2-production.up.railway.app"
+
+                        "https://pruebas2-production.up.railway.app"
                         ,"http://127.0.0.1:5173",
                         "http://localhost:5173",
                         "https://earnest-crostata-5fa50f.netlify.app/authentication/login") // Reemplaza con el origen de tu aplicación
