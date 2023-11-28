@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GastosRepository extends JpaRepository<Gastos,Long>{
-    Page<Gastos> findByusuarioid(Long UsuarioId, Pageable paginacion);
+    Page<Gastos> findByusuarioid(Long usuarioid, Pageable paginacion);
 }
