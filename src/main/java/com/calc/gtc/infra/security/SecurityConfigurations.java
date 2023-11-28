@@ -59,7 +59,7 @@ public class SecurityConfigurations implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3600);
-        registry.addMapping("https://calculadora-production-6cd6.up.railway.app/gastos/10'").allowedOrigins(
+        registry.addMapping("https://calculadora-production-6cd6.up.railway.app/gastos/*").allowedOrigins(
 
                         "https://pruebas2-production.up.railway.app"
                         ,"http://127.0.0.1:5173",
