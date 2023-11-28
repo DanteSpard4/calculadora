@@ -3,18 +3,21 @@ package com.calc.gtc.domain.gastos;
 import com.calc.gtc.domain.usuarios.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Table(name = "Gastos")
-@Entity(name = "Gasto")
+@Entity
+@Table(name = "gastos")
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Gastos {
+@EqualsAndHashCode(of = "id")
+ public class Gastos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GastoID")
@@ -38,12 +41,20 @@ public class Gastos {
     @Column(name = "Descripcion")
     private String descripcion;
 
-    public Gastos(DatosGastos datosGastos) {
-        this.usuarioid=datosGastos.usuarioID();
+    @Column(name = "tipo")
+    private Boolean tipo;
+
+    @Column(name = "razon")
+    private String razon;
+
+    public Gastos(Long id,DatosGastos datosGastos) {
+        this.usuarioid=id;
         this.categoria=datosGastos.categoria();
         this.monto=datosGastos.monto();
         this.banco=datosGastos.banco();
         this.fecha=datosGastos.fecha();
         this.descripcion=datosGastos.descripcion();
+        this.tipo=datosGastos.tipo();
+        this.razon=datosGastos.razon();
     }
 }

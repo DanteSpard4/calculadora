@@ -57,4 +57,18 @@ public class TokenService {
         }
         return verifier.getSubject();
     }
+
+    public Long getUsuarioId(String token){
+
+        token = token.replace("Bearer ","");
+
+        try {
+            DecodedJWT decodedJWT = JWT.decode(token);
+            return decodedJWT.getClaim("id").asLong();
+        } catch (Exception e) {
+            // Maneja las excepciones según tus necesidades
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
