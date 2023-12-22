@@ -22,7 +22,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
             return JWT.create()
                     .withIssuer("calGtc")
-                    .withSubject(usuario.getLogin())
+                    .withSubject(usuario.getEmail())
                     .withClaim("id",usuario.getId())
                     .withExpiresAt(generarFechaExpiracion())
                     .sign(algorithm);

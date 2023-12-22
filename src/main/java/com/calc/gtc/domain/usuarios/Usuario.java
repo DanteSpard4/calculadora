@@ -24,9 +24,11 @@ public class Usuario implements UserDetails {
     private Long id;
     private String login;
     private String clave;
+    private String email;
 
-    public Usuario(String login, String passwordEncrypt) {
+    public Usuario(String login, String passwordEncrypt,String email) {
         this.login = login;
+        this.email = email;
         this.clave = passwordEncrypt;
     }
 
@@ -42,7 +44,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override

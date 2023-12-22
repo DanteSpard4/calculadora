@@ -24,7 +24,7 @@ public class RegistroController {
     @PostMapping
     public ResponseEntity registrarUsuario(@RequestBody @Valid DatosRegistroUsuario datosRegistroUsuario){
         var passwordEncrypt = encryptService.cifrarContraseña(datosRegistroUsuario.clave());
-        repository.save(new Usuario(datosRegistroUsuario.login(),passwordEncrypt));
+        repository.save(new Usuario(datosRegistroUsuario.login(),passwordEncrypt,datosRegistroUsuario.email()));
         return ResponseEntity.ok().build();
     }
 }
