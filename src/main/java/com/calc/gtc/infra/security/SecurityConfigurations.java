@@ -55,7 +55,7 @@ public class SecurityConfigurations implements WebMvcConfigurer {
                         ,"http://127.0.0.1:5173",
                         "http://localhost:5173",
                         "https://earnest-crostata-5fa50f.netlify.app") // Reemplaza con el origen de tu aplicación
-                .allowedMethods("GET", "POST", "OPTIONS")
+                .allowedMethods("GET", "POST", "OPTIONS","DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3600);

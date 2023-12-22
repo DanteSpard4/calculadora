@@ -36,4 +36,10 @@ public class GastosController {
     public ResponseEntity obtenerGastoPorBanco(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@PathVariable String banco){
         return ResponseEntity.ok().build();
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity eliminarRegistro(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@PathVariable Long id){
+        Gastos gastos = repository.getReferenceById(id);
+        repository.delete(gastos);
+        return ResponseEntity.noContent().build();
+    }
 }
