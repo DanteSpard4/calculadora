@@ -1,5 +1,6 @@
 package com.calc.gtc.domain.gastos;
 
+import com.calc.gtc.domain.bancos.Banco;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,7 +13,7 @@ public record DatosGastos(
         @NotNull
         BigDecimal monto,
         @NotEmpty
-        String banco,
+        Banco banco,
         @NotNull
         LocalDate fecha,
         @NotEmpty

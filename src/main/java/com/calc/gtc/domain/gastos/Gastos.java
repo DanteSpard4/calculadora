@@ -1,5 +1,6 @@
 package com.calc.gtc.domain.gastos;
 
+import com.calc.gtc.domain.bancos.Banco;
 import com.calc.gtc.domain.usuarios.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "gastoID")
  public class Gastos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +33,6 @@ import java.time.LocalDate;
     @Column(name = "Monto")
     private BigDecimal monto;
 
-    @Column(name = "Banco")
-    private String banco;
-
     @Column(name = "Fecha")
     private LocalDate fecha;
 
@@ -46,6 +44,10 @@ import java.time.LocalDate;
 
     @Column(name = "razon")
     private String razon;
+
+    @ManyToOne
+    @JoinColumn(name = "banco_id")
+    private Banco banco;
 
     public Gastos(Long id,DatosGastos datosGastos) {
         this.usuarioid=id;

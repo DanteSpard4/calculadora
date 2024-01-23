@@ -67,3 +67,8 @@ CREATE TABLE RegistroSesiones (
     FechaHoraFin DATETIME,
     CONSTRAINT FK_RegistroSesiones_Usuario FOREIGN KEY (UsuarioID) REFERENCES usuarios(id)
 );
+
+   CREATE TABLE BANCOS(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100)
+   )
