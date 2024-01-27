@@ -23,8 +23,9 @@ public class TratadorDeErrores {
         return ResponseEntity.badRequest().body(errores);
     }
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public ResponseEntity<String> tratarErrroEmail(){
-        return ResponseEntity.badRequest().body("Email ya se encuentra en uso.");
+    public ResponseEntity tratarErrroEmail(SQLIntegrityConstraintViolationException e){
+        var Error = new DatosErrorValidacion(e.getMessage(),"Email ya se encuentra en uso.");
+        return ResponseEntity.badRequest().body(Error);
     }
     private record DatosErrorValidacion(String campo,String error){
         public DatosErrorValidacion(FieldError error){
