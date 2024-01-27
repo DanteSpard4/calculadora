@@ -5,14 +5,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 @RestControllerAdvice
 public class TratadorDeErrores {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity tratarError404(){
+    public ResponseEntity<String> tratarError404(){
         return ResponseEntity.notFound().build();
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -20,7 +22,10 @@ public class TratadorDeErrores {
         var errores = e.getFieldErrors().stream().map(DatosErrorValidacion::new).toList();
         return ResponseEntity.badRequest().body(errores);
     }
-
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public ResponseEntity<String> tratarErrroEmail(){
+        return ResponseEntity.badRequest().body("Email ya se encuentra en uso.");
+    }
     private record DatosErrorValidacion(String campo,String error){
         public DatosErrorValidacion(FieldError error){
             this(error.getField(),error.getDefaultMessage());
